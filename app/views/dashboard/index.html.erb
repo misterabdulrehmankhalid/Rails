@@ -1,13 +1,5 @@
 <h1>Dashboard</h1>
 <p>Welcome to your dashboard</p>
 <%= link_to "Back to Home", root_path %>
-
-<form action="/submit_form" method="post">
-    <label for="">Add Book</label>
-    <input type="text" name="book">
-
-    <label for="">Add Description</label>
-    <input type="text" name="description">
-
-    <input type="submit" value="Add Book">
-</form>
+<%= link_to "Go to books", books_path%>
+<%= link_to "Go to Authors", authors_path%>

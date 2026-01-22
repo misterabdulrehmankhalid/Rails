@@ -1,0 +1,34 @@
+<%# <form action="/submit_form" method="post">
+    <input type="hidden" name="authenticity_token" value="UHQSKXCaFqy_aoK760zpSMUPy6TMnsLNgbPMABwN1zpW-Jx6k-2mISiF0ulZOINmfxPdg5xMyZqdxSW1UK-H-Q" autocomplete="off">
+    <label for="book_title">Add Book to your bucket</label>
+    <input type="text" name="book">
+
+    <label for="book_description">Add Description</label>
+    <input type="text" name="description">
+
+    <input type="submit" value="Add Book">
+</form> %>
+
+
+<%# <<h1>Add a New Book</h1> %>
+<h1>Add a new book</h1>
+
+<%= form_with model: @my_book do |form|%>
+<div>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+</div>
+
+<div>
+  <%= form.label :description %>
+  <%= form.text_field :description %>
+</div>
+
+<div>
+  <%= form.label :author_ids, "Select Authors"%>
+  <%= form.collection_select :author_ids, Author.all, :id, :name, {}, multiple: true %>
+</div>
+<div>
+  <%= form.submit%>
+</div>
+<% end %>

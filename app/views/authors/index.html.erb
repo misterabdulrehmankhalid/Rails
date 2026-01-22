@@ -1,0 +1,43 @@
+<h1>Welcome Author</h1>
+<p>Add your details to become part of this store.</p>
+
+<%= link_to "Are you a new author? Enter details", new_author_path %>
+<%= link_to "Go to books", new_book_path %>
+
+
+<h1>All Authors are shown here</h1>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date of birth</th>
+      <th>Books</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @my_author.each do |i| %>
+      <tr>
+        <td><%= i.name %></td>
+        <td><%= i.dob %></td>
+        <td>
+          <% if i.books.any? %>
+            <%= i.books.map(&:title).join(", ") %>
+          <% else %>
+            <p>No Books</p>
+          <% end %>
+        </td>
+        <td>
+        <%= link_to "Delete", author_path(i), 
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+      </td>
+
+      <td>
+        <%= link_to "Edit", edit_author_path(i) %>
+      </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

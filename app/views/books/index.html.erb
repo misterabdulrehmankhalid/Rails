@@ -1,0 +1,42 @@
+<h1>Welcome to books store</h1>
+<p>Which book do you want to buy?</p>
+
+<div style="margin-bottom: 20px;">
+  <%= link_to "Add Books", new_book_path %> | 
+  <%= link_to "Add Authors", new_author_path %>
+</div>
+
+<h1>All books are shown here</h1>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Authors</th>
+      <th>Actions</th> </tr>
+  </thead>
+  
+  <tbody>
+    <% @my_book.each do |book| %> <tr>
+        <td><%= book.title %></td>
+        
+        <td><%= book.description %></td>
+        
+        <td>
+          <% if book.authors.any? %>
+            <%= book.authors.map(&:name).join(", ") %>
+          <% else %>
+            <p>No Authors</p>
+          <% end %>
+        </td>
+        
+        <td>
+          <%= link_to "Edit", edit_book_path(book) %> |
+          <%= link_to "Delete", book_path(book), 
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

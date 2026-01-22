@@ -1,0 +1,31 @@
+<h1>Edit Book</h1>
+
+<%= form_with model: @my_book do |form| %>
+  <div>
+    <%= form.label :title %>
+    <br>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <br>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :author_ids, "Select Authors"%>
+    <%= form.collection_select :author_ids, Author.all, :id, :name, {}, multiple: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Update Book" %>
+  </div>
+<% end %>
+
+<br>
+
+<div>
+  <%= link_to "Show this Book", @my_book %> |
+  <%= link_to "Back to List", books_path %>
+</div>

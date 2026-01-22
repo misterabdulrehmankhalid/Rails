@@ -1,0 +1,17 @@
+<h1>Add details of new author</h1>
+
+<%= form_with model: @my_author do |i|%>
+<div>
+    <%= i.label :name%>
+    <%= i.text_field :name%>
+</div>
+
+<div>
+  <%= i.label :dob, "Date of Birth" %>
+  <%= i.date_field :dob %>
+</div>
+
+<div>
+    <%= i.submit%>
+</div>
+<% end %>

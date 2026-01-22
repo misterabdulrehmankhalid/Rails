@@ -1,4 +1,11 @@
 # Rails.application.routes.draw do
+# get "author/index"
+# get "author/show"
+# get "author/edit"
+# get "author/update"
+# get "author/new"
+# get "author/create"
+# get "author/destroy"
 # get "dashboard/index"
 #   get "home/index"
 #   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -18,4 +25,10 @@
 Rails.application.routes.draw do
   root "home#index"
   get "/dashboard", to: "dashboard#index"
+  # get "/books", to: "books#index"
+  # get "/books/show", to: "books#show"
+  # post "/books/create", to: "books#create"
+  # get "/books/new", to: "books#new"
+  resources :books
+  resources :authors
 end

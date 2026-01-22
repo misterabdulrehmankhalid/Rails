@@ -1,0 +1,31 @@
+<h1>Edit Author</h1>
+
+<%= form_with model: @my_author do |form| %>
+  <div>
+    <%= form.label :name %>
+    <br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :dob, "Date of birth" %>
+    <br>
+    <%= form.date_field :dob %>
+  </div>
+
+   <div>
+    <%= form.label :book_ids, "Edit Books"%>
+    <%= form.collection_select :book_ids, Book.all, :id, :title, {}, multiple: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Update Author" %>
+  </div>
+<% end %>
+
+<br>
+
+<div>
+  <%= link_to "Show this Book", @my_author %> |
+  <%= link_to "Back to List", authors_path %>
+</div>
