@@ -1,4 +1,8 @@
 # Rails.application.routes.draw do
+# get "password_resets/new"
+# get "password_resets/create"
+# get "password_resets/edit"
+# get "password_resets/update"
 # get "author/index"
 # get "author/show"
 # get "author/edit"
@@ -31,4 +35,19 @@ Rails.application.routes.draw do
   # get "/books/new", to: "books#new"
   resources :books
   resources :authors
+  get "/signup", to: "users#new"
+  post "/signup", to: "users#create"
+
+  get    "/login",  to: "sessions#new"
+  post   "/login",  to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+
+  get  "/password_resets/new",     to: "password_resets#new",    as: :new_password_reset
+  post "/password_resets",         to: "password_resets#create", as: :password_resets
+  get  "/password_resets/:token/edit", to: "password_resets#edit", as: :edit_password_reset
+  patch "/password_resets/:token", to: "password_resets#update", as: :password_reset
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end
